@@ -1,0 +1,130 @@
+Guía técnica para el Diseñador de Niveles (Unity 3D)
+
+Proyecto: Tierra Tlazanilli
+Responsable: Gerardo
+Rol: Diseñador de niveles y ambientación
+
+Objetivo general
+
+Diseñar y construir los entornos 3D del juego que transmitan el contraste entre el futuro tecnológico y las ruinas naturales de la antigua Tierra, asegurando fluidez jugable y coherencia visual.
+
+Etapa 1: Configuración inicial del entorno (Semana 1–2)
+
+Meta: Tener un terreno base funcional en Unity para pruebas de movimiento y escala.
+
+Tareas:
+
+Crear una nueva escena de prueba llamada Nivel_Principal.unity.
+
+Generar el terreno base desde:
+GameObject > 3D Object > Terrain
+
+Ajustar el tamaño del terreno (ej. 500x500).
+
+Usar el Terrain Tool para modelar montañas, planicies y caminos.
+
+Aplicar materiales básicos (hierba, tierra, roca).
+
+Crear una carpeta Materials/Terreno/
+
+Usar Standard Shader o materiales PBR de Unity.
+
+Integrar el prefab del jugador para probar escalas.
+
+Configurar una cámara de juego con buena distancia de vista.
+
+Resultado: un terreno navegable, con zonas elevadas y caminos naturales.
+
+Etapa 2: Bloqueo del nivel (Week 3–4)
+
+Meta: Crear una primera versión “jugable” del nivel usando geometría simple (bloqueo o greyboxing).
+
+Tareas:
+
+Activar ProBuilder en Unity:
+Window > Package Manager > ProBuilder
+
+Crear estructuras básicas (templos, ruinas, caminos) con formas simples.
+
+Definir zonas clave:
+
+Punto de aparición del jugador.
+
+Área de inicio.
+
+Ruta hacia el templo o ruinas.
+
+Zona de combate o exploración.
+
+Colocar colliders básicos para evitar que el jugador atraviese estructuras.
+
+Probar constantemente la escala (jugador dentro del entorno).
+
+Resultado: primer prototipo jugable con estructura general del nivel.
+Etapa 3: Ambientación y detalles (Semana 5–6)
+
+Meta: Transformar el entorno básico en un escenario visualmente inmersivo.
+
+Tareas:
+
+Añadir vegetación y detalles naturales:
+
+Árboles, plantas, rocas (usar Terrain Paint Trees/Details).
+
+Ruinas mayas, totonacas o mexicas (modelos importados o de assets gratuitos).
+
+Integrar efectos de luz y niebla:
+
+Ajustar Lighting > Environment Lighting para un tono cálido o místico.
+
+Agregar Volumetric Fog o Post-Processing Volume.
+
+Configurar la hora del día y el clima (mañana, atardecer o lluvia ligera).
+
+Crear zonas de interés visual (templos, monumentos, portales).
+
+Resultado: un entorno que ya transmite la narrativa y atmósfera cultural.
+
+Etapa 4: Flujo de jugador y narrativa visual (Semana 7)
+
+Meta: Guiar al jugador de forma natural por el mapa.
+
+Tareas:
+
+Usar iluminación, caminos y vegetación para dirigir la atención del jugador.
+
+Colocar “referencias visuales” (torres, luces, ruinas) que indiquen objetivos.
+
+Marcar áreas de interacción (lugares de recolección o puzzles).
+
+Agregar triggers invisibles (colliders) para eventos narrativos o diálogos.
+
+Resultado: el nivel tiene ritmo, propósito y guía natural sin necesidad de marcadores en pantalla.
+
+⚔️ Etapa 5: Integración con gameplay (Semana 8)
+
+Meta: Asegurar que el entorno funcione correctamente con los sistemas del programador.
+
+Tareas:
+
+Probar puntos de aparición y respawn.
+
+Confirmar compatibilidad con:
+
+Sistema de interacción (objetos Interactable)
+
+Sistema de combate (zonas de enemigos)
+
+Sistema de guardado (checkpoints o santuarios)
+
+Crear prefabs de cada zona o estructura importante:
+
+Prefab: TemploPrincipal
+
+Prefab: Campamento
+
+Prefab: CuevaOculta
+
+Entregar al programador un mapa con coordenadas o referencias de cada punto clave.
+
+Resultado: un nivel totalmente jugable y sincronizado con los sistemas del juego.
