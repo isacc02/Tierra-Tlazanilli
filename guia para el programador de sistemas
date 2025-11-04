@@ -1,0 +1,169 @@
+Guía técnica para el Programador de Sistemas (Unity 3D)
+
+Proyecto: Tierra Tlazanilli
+Responsable: Diego Islas (don beto)
+Rol: Programador de sistemas base del juego
+
+Objetivo general
+
+Construir los sistemas fundamentales de gameplay en Unity, integrando movimiento, cámara, interacción, inventario y guardado, bajo un enfoque modular y escalable.
+
+Etapa 1: Configuración del personaje y cámara (Semana 1–2)
+
+Meta: Tener un PlayerController funcional con cámara fluida.
+
+Tareas:
+
+Crear el objeto Player con componentes:
+
+CharacterController
+
+PlayerMovement.cs
+
+PlayerCameraController.cs
+
+En PlayerMovement.cs:
+
+Mover con Input System o Input.GetAxis (Horizontal, Vertical)
+
+Saltar (controlar gravedad manual con CharacterController.Move)
+
+Correr con tecla Left Shift
+
+En PlayerCameraController.cs:
+
+Cámara en tercera persona con Follow Target
+
+Suavizado de movimiento (Vector3.Lerp)
+
+Opción para cambiar distancia con scroll del mouse
+
+Usar Cinemachine si se quiere un control avanzado de cámara.
+
+Resultado: El jugador puede moverse libremente en un entorno 3D con cámara fluida.
+
+Etapa 2: Sistema de interacción (Semana 3)
+
+Meta: El jugador puede interactuar con objetos cercanos.
+
+Tareas:
+
+Crear un Interactable.cs con método virtual:
+
+public virtual void Interact() { }
+
+
+Hacer raycast desde la cámara hacia el centro de la pantalla:
+
+if (Physics.Raycast(cam.position, cam.forward, out hit, range)) 
+
+
+Detectar si el objeto tiene el componente Interactable.
+
+Mostrar mensaje en pantalla: "Presiona E para interactuar".
+
+Llamar a Interact() al presionar E.
+
+Ejemplo práctico:
+Cofre → clase Chest : Interactable
+Puerta → clase Door : Interactable
+
+Etapa 3: Sistema de inventario (Semana 4–5)
+
+Meta: Recolectar y gestionar objetos (ítems, reliquias, materiales).
+
+Tareas:
+
+Crear Item.cs (ScriptableObject) con:
+
+[CreateAssetMenu(menuName = "Items/Nuevo Item")]
+public class Item : ScriptableObject {
+    public string itemName;
+    public Sprite icon;
+    public string description;
+}
+
+
+Crear InventoryManager.cs:
+
+Lista de objetos List<Item> items
+
+Funciones: AddItem(Item item) y RemoveItem(Item item)
+
+Crear una interfaz InventoryUI con un Grid Layout que muestre íconos.
+
+Integrar ItemPickup.cs en los objetos del mundo.
+
+Pro tip: usar ScriptableObjects permite definir cientos de ítems sin duplicar lógica.
+
+Etapa 4: Sistema de guardado (Semana 6)
+
+Meta: Guardar y cargar progreso localmente.
+
+Tareas:
+
+Crear clase SaveData serializable:
+
+[System.Serializable]
+public class SaveData {
+    public Vector3 playerPosition;
+    public List<string> collectedItems;
+}
+
+
+Usar JsonUtility.ToJson para guardar en Application.persistentDataPath.
+
+Al cargar, restaurar posición e inventario.
+
+Crear menú de Guardar / Cargar partida (UI básica).
+
+⚔️ Etapa 5: Sistema de combate base (Semana 7–8)
+
+Meta: Implementar el sistema de combate simple con melee y enemigos básicos.
+
+Tareas:
+
+EnemyController.cs con estados: Idle, Patrol, Chase, Attack.
+
+Sistema de daño con TakeDamage(float amount) en el jugador y enemigos.
+
+Implementar colisión de ataques con colliders y eventos.
+
+Integrar animaciones de ataque (puede coordinar con el animador).
+
+Organización del proyecto (Estructura sugerida)
+Assets/
+├── Scripts/
+│   ├── Player/
+│   ├── Systems/
+│   ├── Items/
+│   └── UI/
+├── Prefabs/
+├── Scenes/
+├── Materials/
+├── Models/
+└── UI/
+
+Herramientas recomendadas
+
+Unity 2022.3+ (LTS)
+
+Cinemachine (cámara)
+
+New Input System
+
+ProBuilder (bloquear niveles rápido)
+
+TextMeshPro (UI)
+
+GitHub o Plastic SCM (control de versiones)
+
+Bonus: buenas prácticas
+
+Comentar cada script con propósito y parámetros.
+
+Evitar referencias directas (usar eventos o UnityAction).
+
+Mantener todos los sistemas desacoplados.
+
+Probar cada sistema en una escena de prueba antes de integrarlo.
